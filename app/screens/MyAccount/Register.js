@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Button, Text } from 'react-native-elements';
+import { StyleSheet, View, ActivityIndicator, ScrollView } from 'react-native';
+import { Button, Text, Image } from 'react-native-elements';
 import Toast, { DURATION } from 'react-native-easy-toast';
 
 import * as firebase from 'firebase';
@@ -95,26 +95,35 @@ export default class Register extends Component {
         const { registerStruct, registerOptions, formErrorMessage } = this.state;
 
         return (
-            <View style={styles.viewBody}>
-                <Form
-                    ref="registerForm"
-                    type={registerStruct}
-                    options={registerOptions}
-                    value={this.state.formData}
-                    onChange={(formValue) => this.onChangeRegister(formValue)}
-                />
-                <Button buttonStyle={styles.registerButton} title="Unirme" onPress={() => this.register()} />
-                <Text style={styles.formErrorMessage} >{formErrorMessage}</Text>
-                <Toast
-                    ref="toast"
-                    position="bottom"
-                    positionValue={200}
-                    fadeInDuration={500}
-                    fadeOutDuration={500}
-                    opacity={0.8}
-                    textStyle={{ color: "#fff" }}
-                />
-            </View>
+            <ScrollView>
+                <View style={styles.viewBody}>
+                    <Image
+                        source={require('../../../assets/img/5-tenedores-letras-icono-logo.png')}
+                        style={styles.logo}
+                        containerStyle={styles.containerLogo}
+                        PlaceHolderContent={<ActivityIndicator />}
+                        resizeMode="contain"
+                    />
+                    <Form
+                        ref="registerForm"
+                        type={registerStruct}
+                        options={registerOptions}
+                        value={this.state.formData}
+                        onChange={(formValue) => this.onChangeRegister(formValue)}
+                    />
+                    <Button buttonStyle={styles.registerButton} title="Unirme" onPress={() => this.register()} />
+                    <Text style={styles.formErrorMessage} >{formErrorMessage}</Text>
+                    <Toast
+                        ref="toast"
+                        position="bottom"
+                        positionValue={200}
+                        fadeInDuration={500}
+                        fadeOutDuration={500}
+                        opacity={0.8}
+                        textStyle={{ color: "#fff" }}
+                    />
+                </View>
+            </ScrollView>
         );
     }
 }
@@ -122,8 +131,12 @@ export default class Register extends Component {
 const styles = StyleSheet.create({
     viewBody: {
         flex: 1,
-        justifyContent: "center",
-        padding: 40,
+        padding: 30
+    },
+    logo: {
+        width: "100%",
+        height: 175,
+        marginBottom: 30
     },
     registerButton: {
         backgroundColor: "#00a680",

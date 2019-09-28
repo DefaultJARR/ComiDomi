@@ -41,7 +41,7 @@ export default class Login extends Component {
         const formData = this.state.formData;
 
         if (formData.email == "" || formData.password == "") {
-            this.setState({ loginErrorMessage: "Todos los Camos Obligatorios" });
+            this.setState({ loginErrorMessage: "Todos los son Campos Obligatorios" });
         }
         else {
             if (!valid) {
@@ -133,15 +133,14 @@ export default class Login extends Component {
                         onChange={(formValue) => this.onChangeLogin(formValue)}
                     />
                     <Button buttonStyle={styles.loginButton} title="Iniciar Sesión" onPress={() => this.login()} />
+                    <Text style={styles.textRegister}>
+                        ¿Aún no tienes Cuenta? <Text style={styles.btnRegister} onPress={() => this.props.navigation.navigate("Register")}>Registrate</Text>
+                    </Text>
                     <Text style={styles.loginErrorMessage} >{loginErrorMessage}</Text>
 
                     <Divider style={styles.divider} />
 
                     <SocialIcon title="Ingresa con Facebook" button type="facebook" onPress={() => this.loginFacebook()} />
-
-                    <Divider style={styles.divider} />
-
-                    <Button buttonStyle={styles.loginButton} title="Registrate" onPress={() => this.props.navigation.navigate("Register")} />
 
                     <Toast
                         ref="toast"
@@ -172,7 +171,7 @@ export default class Login extends Component {
 const styles = StyleSheet.create({
     viewBody: {
         flex: 1,
-        margin: 30,
+        padding: 30,
         // borderWidth: 1,
         // borderColor: "black"
     },
@@ -187,10 +186,19 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         marginRight: 10
     },
+    textRegister: {
+        alignSelf: "center",
+        marginTop: 15,
+        marginHorizontal: 10
+    },
+    btnRegister: {
+        color: "#00a680",
+        fontWeight: "bold"
+    },
     loginErrorMessage: {
         color: "#f00",
         textAlign: "center",
-        margin: 20
+        marginVertical: 15
     },
     divider: {
         backgroundColor: "#ccc",

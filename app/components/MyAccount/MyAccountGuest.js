@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, ActivityIndicator, View, ScrollView } from 'react-native';
+import { StyleSheet, ActivityIndicator, View } from 'react-native';
 import { Button, Text, Image } from 'react-native-elements';
-
-import Constants from 'expo-constants'; // para el ScrollView
 
 export default class MyAccountGuest extends Component {
 
