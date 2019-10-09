@@ -2,53 +2,72 @@ import React, { Component } from 'react'
 import { StyleSheet, View } from 'react-native';
 import { Overlay, Input, Button, Text, Icon } from 'react-native-elements'
 
-export default class OverlayOneInput extends Component {
+export default class OverlayTwoInputs extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            ...props
+            ...props,
+            actualEmail: this.props.inputValueOne
         }
     }
 
-    onChangeInput = inputData => {
+    onChangeInputOne = inputData => {
         this.setState({
-            inputValue: inputData
+            inputValueOne: inputData
+        });
+    }
+    onChangeInputTwo = inputData => {
+        this.setState({
+            inputValueTwo: inputData
         });
     }
 
-    updateUserName = () => {
-        this.state.updateUserName(this.state.inputValue);
+    updateUserEmail = () => {
+        const newValueOne = this.state.inputValueOne;
+        const newValueTwo = this.state.inputValueTwo;
+
+        this.state.updateUserEmail(newValueOne, newValueTwo);
+
         this.setState({ isVisible: false });
     }
 
     closeOverlay = () => {
+        const actualEmail = this.state.actualEmail;
         this.setState({ isVisible: false });
-        this.state.updateUserName(null);
+        this.state.updateUserEmail(actualEmail, "");
     }
 
     render() {
-        const { isVisible, placeholder, inputValue, updateUserName } = this.state;
+        const { isVisible, placeholderOne, placeholderTwo, inputValueOne, inputValueTwo } = this.state;
 
         return (
             <Overlay
                 isVisible={isVisible}
                 overlayBackgroundColor="transparent"
                 overlayStyle={styles.overlay}
-                // onBackdropPress={() => {}} funcion para ejecutar algo cuando se hace touch fuera del Overlay
+                // onBackdropPress={() => {}} funcion para ejecutar  algo cuando se hace touch fuera del Overlay
                 fullScreen={true}
             >
                 <View style={styles.viewOverlay}>
                     <Input
                         containerStyle={styles.inputOverlay}
-                        placeholder={placeholder}
-                        onChangeText={val => this.onChangeInput(val)}
-                        value={inputValue}
+                        placeholder={placeholderOne}
+                        onChangeText={val => this.onChangeInputOne(val)}
+                        value={inputValueOne}
+                    />
+                    <Input
+                        containerStyle={styles.inputOverlay}
+                        placeholder={placeholderTwo}
+                        onChangeText={val => this.onChangeInputTwo(val)}
+                        value={inputValueTwo}
+                        password={this.state.password}
+                        secureTextEntry={this.state.password}
                     />
                     <Button
                         buttonStyle={styles.buttonOverlay}
                         title="Actualizar"
-                        onPress={() => this.updateUserName()}
+                        onPress={() => this.updateUserEmail()}
                     />
                     <Icon
                         type="material-community"
