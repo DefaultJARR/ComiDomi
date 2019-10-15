@@ -21,11 +21,16 @@ export default class MyAccountProfile extends Component {
         const props = this.props;
 
         return (
-            <View>
+            <View style={styles.userAccountView}>
                 <UserInfo />
             </View>
         );
     }
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    userAccountView: {
+        backgroundColor: "#f2f2f2",
+        height: "100%"
+    }
+});

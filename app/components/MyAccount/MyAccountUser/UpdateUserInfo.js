@@ -24,7 +24,7 @@ export default class UpdateUserInfo extends Component {
                     title: "Cambiar Nombres y Apellidos",
                     iconType: "material-community",
                     iconNameLeft: "account-circle",
-                    iconColorLeft: "#ccc",
+                    iconColorLeft: "#e8ab02",
                     iconNameRight: "chevron-right",
                     iconColorRight: "#ccc",
                     // Se lla
@@ -115,11 +115,11 @@ export default class UpdateUserInfo extends Component {
         });
     }
 
-    updateUserEmail = async (newEmail, newPassword) => {
+    updateUserEmail = async (newEmail, password) => {
         const emailOld = this.props.userInfo.email;
 
-        if (emailOld != newEmail) {
-            this.state.updateUserEmail(newEmail, newPassword);
+        if (emailOld != newEmail && password) {
+            this.state.updateUserEmail(newEmail, password);
         }
         this.setState({ overlayComponent: null });
     }

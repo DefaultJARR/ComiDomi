@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { Text, Avatar } from 'react-native-elements';
+import { Text, Avatar, Button } from 'react-native-elements';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import * as Permissions from 'expo-permissions' // Para solicitar los permisos del dispositivo
 import * as ImagePicker from 'expo-image-picker'; // Seleccionador de Imagenes
@@ -207,6 +207,12 @@ export default class UserInfo extends Component {
                     </View>
                 </View>
                 {this.returnUpdateUserInfoComponent(this.state.userInfo)}
+                <Button
+                    title="Cerrar Sesión"
+                    onPress={() => firebase.auth().signOut()}
+                    titleStyle={styles.btnCloseSesionTitle}
+                    buttonStyle={styles.btnCloseSesion}
+                />
                 <Toast
                     ref="toast"
                     position="bottom"
@@ -239,5 +245,17 @@ const styles = StyleSheet.create({
     userName: {
         fontWeight: "bold",
         fontSize: 20
+    },
+    btnCloseSesion: {
+        marginTop: 30,
+        borderRadius: 0,
+        backgroundColor: "#fff",
+        borderTopWidth: 1,
+        borderTopColor: "#e3e3e3",
+        borderBottomWidth: 1,
+        borderBottomColor: "#e3e3e3"
+    },
+    btnCloseSesionTitle: {
+        color: "#00a680"
     }
 });
