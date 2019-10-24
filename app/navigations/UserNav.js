@@ -7,8 +7,9 @@ import {
 } from 'react-navigation';
 
 // Screens para los Stacks
-// Screens HomeStack
-import HomeScreen from '../screens/Home';
+// Screens Restaurants
+import RestaurantsScreen from '../screens/Restaurants/Restaurants';
+import AddRestaurantScreen from '../screens/Restaurants/AddRestaurant';
 
 // Screens SearchStack
 import SearchScreen from '../screens/Search';
@@ -23,13 +24,19 @@ import LoginScreen from '../screens/MyAccount/Login';
 
 
 // Stacks
-const homeStack = createStackNavigator({
-    Home: {
-        screen: HomeScreen,
+const restaurantsStack = createStackNavigator({
+    Restaurants: {
+        screen: RestaurantsScreen,
         navigationOptions: ({ navigation }) => ({
-            title: "Home"
+            title: "Restaurantes"
         })
-    }
+    },
+    AddRestaurant: {
+        screen: AddRestaurantScreen,
+        navigationOptions: ({ navigation }) => ({
+            title: "Nuevo Restaurante"
+        })
+    },
 });
 
 const searchStack = createStackNavigator({
@@ -73,10 +80,10 @@ const myAccountStack = createStackNavigator({
 
 const iconSize = 25;
 const RootStack = createBottomTabNavigator({
-    Home: {
-        screen: homeStack,
+    Restaurants: {
+        screen: restaurantsStack,
         navigationOptions: ({ navigation }) => ({
-            tabBarLabel: "HomeTab",
+            tabBarLabel: "Restaurantes",
             tabBarIcon: ({ tintColor }) => (
                 <Icon
                     type="material-community"
@@ -130,8 +137,8 @@ const RootStack = createBottomTabNavigator({
         })
     }
 }, {
-    initialRouteName: "MyAccount",
-    order: ["Home", "Search", "TopFive", "MyAccount"], // Para Ordenar Los Elementos del Menú
+    initialRouteName: "Restaurants",
+    order: ["Restaurants", "Search", "TopFive", "MyAccount"], // Para Ordenar Los Elementos del Menú
     tabBarOptions: {
         inactiveTintColor: "#646464",
         activeTintColor: "#00a680"
